@@ -111,7 +111,7 @@ def _send_accept(player_email: str, minecraft_nick: str, smtp_password: str):
 
           <div style="background:#071529;border:1px solid #1a3a6a;border-radius:8px;padding:14px;text-align:center;">
             <div style="color:#7ab0d8;font-size:13px;line-height:1.6;">
-              После оплаты напиши администратору в Telegram — он выдаст IP сервера
+              После оплаты напиши администратору в Telegram <strong style="color:#1a8fff;">@mXRlBLhQh</strong> — он выдаст IP сервера
             </div>
           </div>
         </div>

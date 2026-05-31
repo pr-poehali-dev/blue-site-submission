@@ -364,7 +364,7 @@ export default function Index() {
               <h3 className="font-black text-foreground text-lg mb-2 tracking-wide">Telegram</h3>
               <p className="text-foreground/40 text-sm mb-4">Главный канал связи с администратором</p>
               <div className="font-mono-tech text-primary text-sm bg-primary/10 px-3 py-2 rounded">
-                @admin_minecraft
+                @mXRlBLhQh
               </div>
             </div>
 
