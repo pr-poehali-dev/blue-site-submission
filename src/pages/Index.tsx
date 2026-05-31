@@ -15,7 +15,7 @@ const RULES = [
 ];
 
 const SERVER_INFO = [
-  { label: 'Версия', value: 'Java 1.21.1', icon: 'Layers' },
+  { label: 'Версия', value: 'Java 1.21.11', icon: 'Layers' },
   { label: 'Режим', value: 'Выживание', icon: 'Sword' },
   { label: 'Сложность', value: 'Hard', icon: 'Flame' },
   { label: 'Слоты', value: '50 игроков', icon: 'Users' },
