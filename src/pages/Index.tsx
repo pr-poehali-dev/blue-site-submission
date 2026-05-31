@@ -24,7 +24,6 @@ const SERVER_INFO = [
 ];
 
 export default function Index() {
-  const [telegram, setTelegram] = useState('');
   const [nick, setNick] = useState('');
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -53,7 +52,7 @@ export default function Index() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!telegram.trim() || !nick.trim() || !email.trim()) {
+    if (!nick.trim() || !email.trim()) {
       setErrorMsg('Заполни все поля');
       setStatus('error');
       return;
@@ -64,11 +63,10 @@ export default function Index() {
       const res = await fetch(BACKEND_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ telegram: telegram.trim(), minecraft_nick: nick.trim(), email: email.trim() }),
+        body: JSON.stringify({ minecraft_nick: nick.trim(), email: email.trim() }),
       });
       if (res.ok) {
         setStatus('success');
-        setTelegram('');
         setNick('');
         setEmail('');
       } else {
@@ -226,22 +224,6 @@ export default function Index() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label className="block text-xs font-mono-tech tracking-widest text-foreground/50 mb-2 uppercase">
-                    Telegram username
-                  </label>
-                  <div className="relative">
-                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-primary/60 font-mono-tech">@</span>
-                    <input
-                      type="text"
-                      value={telegram}
-                      onChange={(e) => setTelegram(e.target.value)}
-                      placeholder="username"
-                      className="w-full bg-background/60 border border-border rounded pl-8 pr-4 py-3 text-foreground placeholder-foreground/25 font-mono-tech focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all"
-                    />
-                  </div>
-                </div>
-
                 <div>
                   <label className="block text-xs font-mono-tech tracking-widest text-foreground/50 mb-2 uppercase">
                     Ник в Minecraft

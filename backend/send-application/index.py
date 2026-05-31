@@ -21,11 +21,10 @@ def handler(event: dict, context) -> dict:
 
     raw_body = event.get('body') or '{}'
     body = json.loads(raw_body)
-    telegram = body.get('telegram', '').strip()
     minecraft_nick = body.get('minecraft_nick', '').strip()
     email = body.get('email', '').strip()
 
-    if not telegram or not minecraft_nick or not email:
+    if not minecraft_nick or not email:
         return {
             'statusCode': 400,
             'headers': cors_headers,
@@ -38,7 +37,7 @@ def handler(event: dict, context) -> dict:
     cur = conn.cursor()
     cur.execute(
         "INSERT INTO t_p12699901_blue_site_submission.applications (telegram, minecraft_nick, email, token) VALUES (%s, %s, %s, %s)",
-        (telegram, minecraft_nick, email, token)
+        ('', minecraft_nick, email, token)
     )
     conn.commit()
     cur.close()
@@ -67,11 +66,6 @@ def handler(event: dict, context) -> dict:
 
         <div style="padding:28px 32px;">
           <table style="width:100%;border-collapse:collapse;margin-bottom:24px;">
-            <tr>
-              <td style="padding:12px 16px;color:#4a90d9;font-weight:700;font-size:13px;letter-spacing:1px;background:#071529;border-radius:6px 0 0 6px;width:40%;">TELEGRAM</td>
-              <td style="padding:12px 16px;color:#ffffff;font-size:15px;font-weight:600;background:#0a1e36;border-radius:0 6px 6px 0;">@{telegram}</td>
-            </tr>
-            <tr><td colspan="2" style="height:6px;"></td></tr>
             <tr>
               <td style="padding:12px 16px;color:#4a90d9;font-weight:700;font-size:13px;letter-spacing:1px;background:#071529;border-radius:6px 0 0 6px;">НИК В ИГРЕ</td>
               <td style="padding:12px 16px;color:#ffffff;font-size:15px;font-weight:600;background:#0a1e36;border-radius:0 6px 6px 0;">{minecraft_nick}</td>
