@@ -19,7 +19,7 @@ const SERVER_INFO = [
   { label: 'Режим', value: 'Выживание', icon: 'Sword' },
   { label: 'Сложность', value: 'Hard', icon: 'Flame' },
   { label: 'Слоты', value: '50 игроков', icon: 'Users' },
-  { label: 'Карта', value: 'Бесконечная', icon: 'Map' },
+  { label: 'Карта', value: '50 000 × 50 000', icon: 'Map' },
   { label: 'Тип', value: 'Приватный', icon: 'Lock' },
 ];
 
