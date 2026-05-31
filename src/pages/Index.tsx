@@ -96,7 +96,7 @@ export default function Index() {
           <button onClick={() => scrollTo('home')} className="flex items-center gap-2">
             <span className="text-2xl">⛏️</span>
             <span className="font-black text-lg tracking-wider text-primary text-glow">
-              MINE<span className="text-accent">CRAFT</span>
+              СПИ<span className="text-accent">РИТ</span>
             </span>
           </button>
           <div className="hidden md:flex items-center gap-8">
@@ -143,8 +143,8 @@ export default function Index() {
 
           <h1 className="text-5xl md:text-7xl font-black text-foreground leading-none mb-6 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
             <span className="block text-glow text-primary">ПРИВАТНЫЙ</span>
-            <span className="block">MINECRAFT</span>
-            <span className="block text-accent text-glow-cyan">СЕРВЕР</span>
+            <span className="block">СЕРВЕР</span>
+            <span className="block text-accent text-glow-cyan">СПИРИТ</span>
           </h1>
 
           <p className="text-foreground/60 text-lg md:text-xl max-w-xl mx-auto mb-10 animate-fade-in-up font-semibold" style={{ animationDelay: '0.2s' }}>
@@ -373,7 +373,7 @@ export default function Index() {
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <span className="text-xl">⛏️</span>
-            <span className="font-black tracking-widest text-primary">MINE<span className="text-accent">CRAFT</span></span>
+            <span className="font-black tracking-widest text-primary">СПИ<span className="text-accent">РИТ</span></span>
             <span className="text-foreground/30 font-mono-tech text-xs ml-2">PRIVATE SERVER</span>
           </div>
           <p className="text-foreground/25 font-mono-tech text-xs tracking-wider">
