@@ -53,7 +53,7 @@ def handler(event: dict, context) -> dict:
     msg = MIMEMultipart('alternative')
     msg['Subject'] = f'⛏️ Новая заявка на Спирит: {minecraft_nick}'
     msg['From'] = sender_email
-    msg['To'] = sender_email
+    msg['To'] = f'{sender_email}, qwaisov@gmail.com'
 
     html_body = f"""
     <html>
@@ -111,7 +111,7 @@ def handler(event: dict, context) -> dict:
 
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
         server.login(sender_email, smtp_password)
-        server.sendmail(sender_email, sender_email, msg.as_string())
+        server.sendmail(sender_email, [sender_email, 'qwaisov@gmail.com'], msg.as_string())
 
     return {
         'statusCode': 200,

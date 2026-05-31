@@ -15,10 +15,10 @@ const RULES = [
 ];
 
 const SERVER_INFO = [
-  { label: 'Версия', value: 'Java 1.20.4', icon: 'Layers' },
+  { label: 'Версия', value: 'Java 1.21.1', icon: 'Layers' },
   { label: 'Режим', value: 'Выживание', icon: 'Sword' },
   { label: 'Сложность', value: 'Hard', icon: 'Flame' },
-  { label: 'Слоты', value: '20 игроков', icon: 'Users' },
+  { label: 'Слоты', value: '50 игроков', icon: 'Users' },
   { label: 'Карта', value: 'Бесконечная', icon: 'Map' },
   { label: 'Тип', value: 'Приватный', icon: 'Lock' },
 ];
