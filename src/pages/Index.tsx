@@ -26,6 +26,7 @@ const SERVER_INFO = [
 export default function Index() {
   const [telegram, setTelegram] = useState('');
   const [nick, setNick] = useState('');
+  const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
   const [activeSection, setActiveSection] = useState('home');
@@ -52,8 +53,8 @@ export default function Index() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!telegram.trim() || !nick.trim()) {
-      setErrorMsg('Заполни оба поля');
+    if (!telegram.trim() || !nick.trim() || !email.trim()) {
+      setErrorMsg('Заполни все поля');
       setStatus('error');
       return;
     }
@@ -63,12 +64,13 @@ export default function Index() {
       const res = await fetch(BACKEND_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ telegram: telegram.trim(), minecraft_nick: nick.trim() }),
+        body: JSON.stringify({ telegram: telegram.trim(), minecraft_nick: nick.trim(), email: email.trim() }),
       });
       if (res.ok) {
         setStatus('success');
         setTelegram('');
         setNick('');
+        setEmail('');
       } else {
         const data = await res.json();
         setErrorMsg(data.error || 'Ошибка сервера');
@@ -253,6 +255,24 @@ export default function Index() {
                       value={nick}
                       onChange={(e) => setNick(e.target.value)}
                       placeholder="Steve"
+                      className="w-full bg-background/60 border border-border rounded pl-10 pr-4 py-3 text-foreground placeholder-foreground/25 font-mono-tech focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-mono-tech tracking-widest text-foreground/50 mb-2 uppercase">
+                    Ваша почта
+                  </label>
+                  <div className="relative">
+                    <span className="absolute left-3 top-1/2 -translate-y-1/2">
+                      <Icon name="Mail" size={16} className="text-primary/60" />
+                    </span>
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="example@gmail.com"
                       className="w-full bg-background/60 border border-border rounded pl-10 pr-4 py-3 text-foreground placeholder-foreground/25 font-mono-tech focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all"
                     />
                   </div>

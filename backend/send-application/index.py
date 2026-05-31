@@ -23,8 +23,9 @@ def handler(event: dict, context) -> dict:
     body = json.loads(raw_body)
     telegram = body.get('telegram', '').strip()
     minecraft_nick = body.get('minecraft_nick', '').strip()
+    email = body.get('email', '').strip()
 
-    if not telegram or not minecraft_nick:
+    if not telegram or not minecraft_nick or not email:
         return {
             'statusCode': 400,
             'headers': cors_headers,
@@ -36,8 +37,8 @@ def handler(event: dict, context) -> dict:
     conn = psycopg2.connect(os.environ['DATABASE_URL'])
     cur = conn.cursor()
     cur.execute(
-        "INSERT INTO t_p12699901_blue_site_submission.applications (telegram, minecraft_nick, token) VALUES (%s, %s, %s) RETURNING id",
-        (telegram, minecraft_nick, token)
+        "INSERT INTO t_p12699901_blue_site_submission.applications (telegram, minecraft_nick, email, token) VALUES (%s, %s, %s, %s)",
+        (telegram, minecraft_nick, email, token)
     )
     conn.commit()
     cur.close()
@@ -75,16 +76,27 @@ def handler(event: dict, context) -> dict:
               <td style="padding:12px 16px;color:#4a90d9;font-weight:700;font-size:13px;letter-spacing:1px;background:#071529;border-radius:6px 0 0 6px;">НИК В ИГРЕ</td>
               <td style="padding:12px 16px;color:#ffffff;font-size:15px;font-weight:600;background:#0a1e36;border-radius:0 6px 6px 0;">{minecraft_nick}</td>
             </tr>
+            <tr><td colspan="2" style="height:6px;"></td></tr>
+            <tr>
+              <td style="padding:12px 16px;color:#4a90d9;font-weight:700;font-size:13px;letter-spacing:1px;background:#071529;border-radius:6px 0 0 6px;">ПОЧТА</td>
+              <td style="padding:12px 16px;color:#ffffff;font-size:15px;font-weight:600;background:#0a1e36;border-radius:0 6px 6px 0;">{email}</td>
+            </tr>
           </table>
 
-          <div style="display:flex;gap:12px;margin-top:8px;">
-            <a href="{accept_url}" style="display:inline-block;flex:1;padding:14px 0;background:#1a6aff;color:#ffffff;font-weight:900;font-size:14px;letter-spacing:2px;text-decoration:none;border-radius:8px;text-align:center;box-shadow:0 0 20px rgba(26,106,255,0.4);">
-              ✅ &nbsp;ПРИНЯТЬ
-            </a>
-            <a href="{reject_url}" style="display:inline-block;flex:1;padding:14px 0;background:#1a1a2e;color:#ff4444;font-weight:900;font-size:14px;letter-spacing:2px;text-decoration:none;border-radius:8px;text-align:center;border:2px solid #3a1a1a;">
-              ❌ &nbsp;ОТКАЗАТЬ
-            </a>
-          </div>
+          <table style="width:100%;border-collapse:collapse;">
+            <tr>
+              <td style="width:48%;padding-right:8px;">
+                <a href="{accept_url}" style="display:block;padding:14px 0;background:#1a6aff;color:#ffffff;font-weight:900;font-size:14px;letter-spacing:2px;text-decoration:none;border-radius:8px;text-align:center;box-shadow:0 0 20px rgba(26,106,255,0.4);">
+                  ✅ &nbsp;ПРИНЯТЬ
+                </a>
+              </td>
+              <td style="width:48%;padding-left:8px;">
+                <a href="{reject_url}" style="display:block;padding:14px 0;background:#1a1a2e;color:#ff4444;font-weight:900;font-size:14px;letter-spacing:2px;text-decoration:none;border-radius:8px;text-align:center;border:2px solid #3a1a1a;">
+                  ❌ &nbsp;ОТКАЗАТЬ
+                </a>
+              </td>
+            </tr>
+          </table>
         </div>
 
         <div style="padding:16px 32px;background:#071529;border-top:1px solid #1a3a6a;text-align:center;">
